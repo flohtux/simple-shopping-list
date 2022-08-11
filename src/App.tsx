@@ -3,10 +3,16 @@ import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft, faCircle, faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons';
 
+type ShoppingItem = {
+	itemName: string,
+	quantity: number,
+	isSelected: boolean
+}
+
 const App = () => {
 	// HINT: each "item" in our list names a name,
 	// a boolean to tell if its been completed, and a quantity
-	const [items, setItems] = useState([
+	const [items, setItems] = useState<ShoppingItem[]>([
 		{ itemName: 'item 1', quantity: 1, isSelected: false },
 		{ itemName: 'item 2', quantity: 3, isSelected: true },
 		{ itemName: 'item 3', quantity: 2, isSelected: false },
@@ -16,7 +22,7 @@ const App = () => {
 	const [totalItemCount, setTotalItemCount] = useState(6);
 
 	const handleAddButtonClick = () => {
-		const newItem = {
+		const newItem: ShoppingItem = {
 			itemName: inputValue,
 			quantity: 1,
 			isSelected: false,
@@ -29,7 +35,7 @@ const App = () => {
 		calculateTotal();
 	};
 
-	const handleQuantityIncrease = (index) => {
+	const handleQuantityIncrease = (index: number) => {
 		const newItems = [...items];
 
 		newItems[index].quantity++;
@@ -38,7 +44,7 @@ const App = () => {
 		calculateTotal();
 	};
 
-	const handleQuantityDecrease = (index) => {
+	const handleQuantityDecrease = (index: number) => {
 		const newItems = [...items];
 
 		newItems[index].quantity--;
@@ -47,7 +53,7 @@ const App = () => {
 		calculateTotal();
 	};
 
-	const toggleComplete = (index) => {
+	const toggleComplete = (index: number) => {
 		const newItems = [...items];
 
 		newItems[index].isSelected = !newItems[index].isSelected;
